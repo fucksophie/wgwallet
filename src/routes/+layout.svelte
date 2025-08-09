@@ -2,7 +2,6 @@
 	const { children } = $props();
 
 	let searchQuery = $state('');
-	let darkMode = $state(true); // Default to dark mode
 
 	const navSections = [
 		{
@@ -25,13 +24,9 @@
 	function handleSearch() {
 		console.log('Searching for:', searchQuery);
 	}
-
-	function toggleDarkMode() {
-		darkMode = !darkMode;
-	}
 </script>
 
-<div class="page" class:dark={darkMode}>
+<div class="page">
 	<!-- Header -->
 	<header class="header">
 		<div class="header-left">
@@ -52,9 +47,6 @@
 					onkeypress={(e) => e.key === 'Enter' && handleSearch()}
 				/>
 			</div>
-			<button class="settings" onclick={toggleDarkMode}>
-				{darkMode ? '☀️' : '🌙'}
-			</button>
 		</div>
 	</header>
 
@@ -91,15 +83,11 @@
 	.page {
 		min-height: 100vh;
 		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-		background-color: #f5f5f5;
+		background-color: #1a1a1a;
 		margin: 0;
 		padding: 0;
 		padding-top: 10px;
 		transition: background-color 0.3s ease;
-	}
-
-	.page.dark {
-		background-color: #1a1a1a;
 	}
 
 	.header {
@@ -107,19 +95,13 @@
 		justify-content: space-between;
 		align-items: center;
 		padding: 12px 20px;
-		background-color: white;
-		border: 2px solid #333;
+		background-color: #2d2d2d;
+		border: 2px solid #555;
 		border-radius: 8px;
 		margin: 10px;
 		margin-top: 0;
-		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-		transition: all 0.3s ease;
-	}
-
-	.dark .header {
-		background-color: #2d2d2d;
-		border-color: #555;
 		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+		transition: all 0.3s ease;
 	}
 
 	.header-left {
@@ -130,53 +112,33 @@
 
 	.logo {
 		padding: 8px 12px;
-		background-color: #f0f0f0;
-		border: 2px solid #333;
+		background-color: #404040;
+		border: 2px solid #666;
+		color: #e0e0e0;
 		border-radius: 6px;
 		font-weight: bold;
 		font-size: 14px;
 		transition: all 0.3s ease;
 	}
-
-	.dark .logo {
-		background-color: #404040;
-		border-color: #666;
-		color: #e0e0e0;
-	}
-
 	.title {
 		font-size: 18px;
 		font-weight: bold;
-		color: #333;
-		transition: color 0.3s ease;
-	}
-
-	.dark .title {
 		color: #e0e0e0;
+		transition: color 0.3s ease;
 	}
 
 	.header-button {
 		padding: 8px 16px;
-		background-color: #f8f8f8;
-		border: 2px solid #333;
+		background-color: #404040;
+		border: 2px solid #666;
 		border-radius: 6px;
 		cursor: pointer;
 		font-size: 14px;
 		transition: all 0.3s ease;
-		color: #333;
-	}
-
-	.header-button:hover {
-		background-color: #e8e8e8;
-	}
-
-	.dark .header-button {
-		background-color: #404040;
-		border-color: #666;
 		color: #e0e0e0;
 	}
 
-	.dark .header-button:hover {
+	.header-button:hover {
 		background-color: #4a4a4a;
 	}
 
@@ -188,12 +150,8 @@
 
 	.topbar-label {
 		font-weight: bold;
-		color: #333;
-		transition: color 0.3s ease;
-	}
-
-	.dark .topbar-label {
 		color: #e0e0e0;
+		transition: color 0.3s ease;
 	}
 
 	.search-container {
@@ -202,59 +160,23 @@
 
 	.search-input {
 		padding: 8px 12px;
-		border: 2px solid #333;
+		border: 2px solid #666;
 		border-radius: 6px;
 		width: 150px;
 		font-size: 14px;
 		outline: none;
-		background-color: white;
-		color: #333;
+		background-color: #404040;
+		color: #e0e0e0;
 		transition: all 0.3s ease;
 	}
 
 	.search-input:focus {
-		border-color: #007acc;
-		box-shadow: 0 0 0 2px rgba(0, 122, 204, 0.2);
-	}
-
-	.dark .search-input {
-		background-color: #404040;
-		border-color: #666;
-		color: #e0e0e0;
-	}
-
-	.dark .search-input::placeholder {
-		color: #999;
-	}
-
-	.dark .search-input:focus {
 		border-color: #4da6ff;
 		box-shadow: 0 0 0 2px rgba(77, 166, 255, 0.2);
 	}
 
-	.settings {
-		padding: 8px 12px;
-		background-color: #f0f0f0;
-		border: 2px solid #333;
-		border-radius: 6px;
-		font-size: 16px;
-		cursor: pointer;
-		transition: all 0.3s ease;
-		color: #333;
-	}
-
-	.settings:hover {
-		background-color: #e0e0e0;
-	}
-
-	.dark .settings {
-		background-color: #404040;
-		border-color: #666;
-		color: #e0e0e0;
-	}
-
-	.dark .settings:hover {
-		background-color: #4a4a4a;
+	.search-input::placeholder {
+		color: #999;
 	}
 
 	.main-container {
@@ -266,8 +188,8 @@
 
 	.sidebar {
 		width: 250px;
-		background-color: white;
-		border: 2px solid #333;
+		background-color: #2d2d2d;
+		border: 2px solid #555;
 		border-radius: 8px;
 		padding: 20px;
 		display: flex;
@@ -276,87 +198,59 @@
 		transition: all 0.3s ease;
 	}
 
-	.dark .sidebar {
-		background-color: #2d2d2d;
-		border-color: #555;
-	}
-
 	.nav-link {
 		display: block;
 		padding: 12px 16px;
-		background-color: #f8f8f8;
-		border: 2px solid #333;
+		background-color: #404040;
+		border: 2px solid #666;
 		border-radius: 20px;
 		text-decoration: none;
-		color: #333;
+		color: #e0e0e0;
 		font-size: 14px;
 		text-align: center;
 		transition: all 0.3s ease;
 	}
 
 	.nav-link:hover {
-		background-color: #e8e8e8;
-		transform: translateY(-1px);
-	}
-
-	.dark .nav-link {
-		background-color: #404040;
-		border-color: #666;
-		color: #e0e0e0;
-	}
-
-	.dark .nav-link:hover {
 		background-color: #4a4a4a;
+		transform: translateY(-1px);
 	}
 
 	.section-divider {
 		height: 2px;
-		background-color: #333;
+		background-color: #666;
 		margin: 10px 0;
 		transition: background-color 0.3s ease;
 	}
 
-	.dark .section-divider {
-		background-color: #666;
-	}
-
 	.section-title {
 		font-size: 16px;
-		color: #333;
+		color: #e0e0e0;
 		margin-bottom: 10px;
 		font-weight: bold;
 		transition: color 0.3s ease;
 	}
 
-	.dark .section-title {
-		color: #e0e0e0;
-	}
-
 	.content {
 		flex: 1;
-		background-color: white;
-		border: 2px solid #333;
+		background-color: #2d2d2d;
+		border: 2px solid #555;
 		border-radius: 8px;
 		padding: 30px;
 		line-height: 1.6;
 		transition: all 0.3s ease;
 	}
 
-	.dark .content {
-		background-color: #2d2d2d;
-		border-color: #555;
-	}
-
 	.content :global {
 		h2 {
-			color: #333;
+			color: #e0e0e0;
 			margin-bottom: 20px;
 			font-size: 24px;
 			transition: color 0.3s ease;
 		}
 		p {
 			margin-bottom: 15px;
-			color: #555;
+			color: #b0b0b0;
 			transition: color 0.3s ease;
 		}
 		ul {
@@ -366,26 +260,11 @@
 
 		li {
 			margin-bottom: 8px;
-			color: #555;
+			color: #b0b0b0;
 			transition: color 0.3s ease;
 		}
 	}
 
-	.dark .content :global {
-		color: #e0e0e0;
-
-		h2 {
-			color: #e0e0e0;
-		}
-
-		p {
-			color: #b0b0b0;
-		}
-
-		li {
-			color: #b0b0b0;
-		}
-	}
 	/* Responsive Design */
 	@media (max-width: 768px) {
 		.header {
